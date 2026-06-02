@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fusion RAG</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <p class="eyebrow">Grounded Retrieval</p>
+          <h1>Fusion RAG</h1>
+          <p class="muted">Upload documents, chat over them, and export every grounded session.</p>
+        </div>
+
+        <section class="card upload-card">
+          <label for="fileInput" class="upload-label">Drop files or choose documents</label>
+          <input id="fileInput" type="file" multiple />
+          <p class="hint">PDF, DOCX, DOC, PPTX, XLSX, XLS, CSV, TSV, TXT, MD, JSON, HTML, XML</p>
+          <button id="uploadButton" class="primary">Index Files</button>
+          <div id="uploadStatus" class="status"></div>
+        </section>
+
+        <section class="card stats-card">
+          <div>
+            <span class="label">Documents</span>
+            <strong id="documentCount">0</strong>
+          </div>
+          <div>
+            <span class="label">Chunks</span>
+            <strong id="chunkCount">0</strong>
+          </div>
+          <div>
+            <span class="label">Semantic</span>
+            <strong id="semanticSearch">Off</strong>
+          </div>
+        </section>
+
+        <section class="card export-card">
+          <button id="downloadPdf" class="secondary">Download PDF</button>
+          <button id="downloadCsv" class="secondary">Download CSV</button>
+        </section>
+      </aside>
+
+      <main class="main-panel">
+        <header class="hero">
+          <div>
+            <p class="eyebrow">Minimal. Fast. Better grounded.</p>
+            <h2>Hybrid retrieval + query fusion to push hallucinations down.</h2>
+          </div>
+          <div id="statusPill" class="status-pill">Ready</div>
+        </header>
+
+        <section id="chatLog" class="chat-log"></section>
+
+        <section class="composer card">
+          <textarea id="messageInput" placeholder="Ask a question grounded in your uploaded files..."></textarea>
+          <div class="composer-actions">
+            <span class="muted">Answers cite retrieved chunks and refuse weak context.</span>
+            <button id="sendButton" class="primary">Send</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="messageTemplate">
+      <article class="message">
+        <div class="message-head">
+          <span class="role"></span>
+          <span class="meta"></span>
+        </div>
+        <div class="message-body"></div>
+        <div class="citations"></div>
+      </article>
+    </template>
+
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
